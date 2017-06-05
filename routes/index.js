@@ -46,10 +46,6 @@ router.get('/author', function (req, res, next) {
     res.render('author');
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> practica52
 
 // Autoload de rutas que usen :quizId
 router.param('quizId', quizController.load);
@@ -90,72 +86,29 @@ router.delete('/users/:userId(\\d+)',
 router.get('/users/:userId(\\d+)/quizzes', quizController.index);     // ver las preguntas de un usuario
 
 
-
 // Definición de rutas de /quizzes
-<<<<<<< HEAD
-router.get('/quizzes',
-    quizController.index);
-router.get('/quizzes/:quizId(\\d+)',
-    quizController.show);
-router.get('/quizzes/new',
-    sessionController.loginRequired,
-    quizController.new);
-router.post('/quizzes',
-    sessionController.loginRequired,
-    quizController.create);
-router.get('/quizzes/:quizId(\\d+)/edit',
-    sessionController.loginRequired,
-    quizController.adminOrAuthorRequired,
-    quizController.edit);
-router.put('/quizzes/:quizId(\\d+)',
-    sessionController.loginRequired,
-    quizController.adminOrAuthorRequired,
-    quizController.update);
-router.delete('/quizzes/:quizId(\\d+)',
-    sessionController.loginRequired,
-    quizController.adminOrAuthorRequired,
-    quizController.destroy);
 
-router.get('/quizzes/:quizId(\\d+)/play',
-    quizController.play);
-router.get('/quizzes/:quizId(\\d+)/check',
-    quizController.check);
+router.get('/quizzes',  quizController.index);
+router.get('/quizzes/:quizId(\\d+)', quizController.show);
+router.get('/quizzes/new',sessionController.loginRequired, quizController.new);
+router.post('/quizzes', sessionController.loginRequired,quizController.create);
+router.get('/quizzes/:quizId(\\d+)/edit',sessionController.loginRequired, quizController.adminOrAuthorRequired, quizController.edit);
+router.put('/quizzes/:quizId(\\d+)',  sessionController.loginRequired, quizController.adminOrAuthorRequired, quizController.update);
+router.delete('/quizzes/:quizId(\\d+)', sessionController.loginRequired, quizController.adminOrAuthorRequired, quizController.destroy);
 
-=======
-router.get('/quizzes',                     quizController.index);
-router.get('/quizzes/:quizId(\\d+)',       quizController.show);
-router.get('/quizzes/new',                 quizController.new);
-router.get('/quizzes/randomplay',         quizController.random);
-router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
+router.get('/quizzes/:quizId(\\d+)/play', quizController.play);
+router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 
-router.post('/quizzes',                    quizController.create);
-router.get('/quizzes/:quizId(\\d+)/edit',  quizController.edit);
-router.put('/quizzes/:quizId(\\d+)',       quizController.update);
-router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
->>>>>>> practica52
-
-router.get('/quizzes/:quizId(\\d+)/tips/new',
-    sessionController.loginRequired,
-    tipController.new);
-router.post('/quizzes/:quizId(\\d+)/tips',
-    sessionController.loginRequired,
-    tipController.create);
-router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept',
-    sessionController.loginRequired,
-    quizController.adminOrAuthorRequired,
-    tipController.accept);
-router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
-    sessionController.loginRequired,
-    tipController.destroy);
+router.get('/quizzes/:quizId(\\d+)/tips/new', sessionController.loginRequired, tipController.new);
+router.post('/quizzes/:quizId(\\d+)/tips', sessionController.loginRequired, tipController.create);
+router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept',sessionController.loginRequired, quizController.adminOrAuthorRequired,
+ tipController.accept);
+router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)', sessionController.loginRequired, tipController.destroy);
 
 // Pagina de creditos
 router.get('/help', function(req, res, next) {
     res.render('help');
 });
-<<<<<<< HEAD
->>>>>>> origin/practica51
-=======
 
->>>>>>> practica52
 
 module.exports = router;
