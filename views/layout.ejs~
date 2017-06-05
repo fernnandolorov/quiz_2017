@@ -35,17 +35,21 @@
     <nav class="main" id="mainNav" role="navigation">
         <a href="/">Inicio</a>
         <a href="/quizzes">Preguntas</a>
+<<<<<<< HEAD
         <% if (session.user) { %>
             <a href="/users/<%= session.user.id %>/quizzes">Mis Preguntas</a>
         <% } %>
+=======
+	<a href="/quizzes/randomplay">Jugar</a>
+>>>>>>> practica52
         <a href="/author">Créditos</a>
-<<<<<<< HEAD
+
         <% if (session.user) { %>
            <a href="/users">Usuarios</a>
         <% } %>
-=======
+
 	<a href="/help">Ayuda</a>
->>>>>>> origin/practica51
+
     </nav>
 
     <section class="main" id="mainSection">
