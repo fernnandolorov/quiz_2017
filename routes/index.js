@@ -60,30 +60,23 @@ router.delete('/session', sessionController.destroy); // destruir sesión
 
 
 // Definición de rutas de cuenta
-router.get('/users',
-    sessionController.loginRequired,
-    userController.index);   // listado usuarios
-router.get('/users/:userId(\\d+)',
-    sessionController.loginRequired,
-    userController.show);    // ver un usuario
-router.get('/users/new',
-    userController.new);     // formulario sign un
-router.post('/users',
-    userController.create);  // registrar usuario
-router.get('/users/:userId(\\d+)/edit',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    userController.edit);     // editar información de cuenta
-router.put('/users/:userId(\\d+)',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    userController.update);   // actualizar información de cuenta
-router.delete('/users/:userId(\\d+)',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    userController.destroy);  // borrar cuenta
+router.get('/users', sessionController.loginRequired, userController.index);   
+// listado usuarios
+router.get('/users/:userId(\\d+)', sessionController.loginRequired,  userController.show);    
+// ver un usuario
+router.get('/users/new', userController.new);     
+// formulario sign un
+router.post('/users', userController.create);  
+// registrar usuario
+router.get('/users/:userId(\\d+)/edit',  sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.edit);  
+// editar información de cuenta
+router.put('/users/:userId(\\d+)', sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.update);   
+// actualizar información de cuenta
+router.delete('/users/:userId(\\d+)', sessionController.loginRequired,  sessionController.adminOrMyselfRequired, userController.destroy);  
+// borrar cuenta
+router.get('/users/:userId(\\d+)/quizzes', quizController.index);    
+// ver las preguntas de un usuario
 
-router.get('/users/:userId(\\d+)/quizzes', quizController.index);     // ver las preguntas de un usuario
 
 
 // Definición de rutas de /quizzes
@@ -99,16 +92,29 @@ router.delete('/quizzes/:quizId(\\d+)', sessionController.loginRequired, quizCon
 router.get('/quizzes/:quizId(\\d+)/play', quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 
+
+//router.get('/quizzes',                     quizController.index);
+//router.get('/quizzes/:quizId(\\d+)',       quizController.show);
+//router.get('/quizzes/new',                 quizController.new);
+router.get('/quizzes/randomplay',         quizController.random);
+router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
+
+//router.post('/quizzes',                    quizController.create);
+//router.get('/quizzes/:quizId(\\d+)/edit',  quizController.edit);
+//router.put('/quizzes/:quizId(\\d+)',       quizController.update);
+//router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
+
+
 router.get('/quizzes/:quizId(\\d+)/tips/new', sessionController.loginRequired, tipController.new);
 router.post('/quizzes/:quizId(\\d+)/tips', sessionController.loginRequired, tipController.create);
-router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept',sessionController.loginRequired, quizController.adminOrAuthorRequired,
- tipController.accept);
-router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)', sessionController.loginRequired, tipController.destroy);
+router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept', sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.accept);
+router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)', sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.destroy);
 
 // Pagina de creditos
 router.get('/help', function(req, res, next) {
     res.render('help');
 });
+
 
 
 module.exports = router;

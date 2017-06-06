@@ -13,7 +13,8 @@ var url, storage;
 
 if (!process.env.DATABASE_URL) {
     url = "postgres://peifpcidwlxzkd:5c85fe03f6f1f24dbbb1a4fcda6b336ed03bc25c1b20800db7b5e2793230668f@ec2-176-34-111-152.eu-west-1.compute.amazonaws.com:5432/de13u7k7ao47ef";
-//    storage = "quiz.sqlite";
+//      url = "sqlite:///";
+//      storage = "quiz.sqlite";
 } else {
     url = process.env.DATABASE_URL;
     storage = process.env.DATABASE_STORAGE || "";
@@ -41,6 +42,10 @@ Quiz.hasMany(Tip);
 // Relacion 1 a N entre User y Quiz:
 User.hasMany(Quiz, {foreignKey: 'AuthorId'});
 Quiz.belongsTo(User, {as: 'Author', foreignKey: 'AuthorId'});
+
+// Relacion 1 a N entre User y Tip:
+User.hasMany(Tip, {foreignKey: 'AuthorId'});
+Tip.belongsTo(User, {as: 'Author', foreignKey: 'AuthorId'});
 
 
 exports.Quiz = Quiz; // exportar definición de tabla Quiz
